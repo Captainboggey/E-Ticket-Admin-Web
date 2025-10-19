@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import CounterTickets from "../Pages/CounterTickets/CounterTickets";
 import OnlineTickets from "../Pages/OnlineTickets/OnlineTickets";
 import NewTickets from "../Pages/NewTickets/NewTickets";
+import UsedTickets from "../Pages/UsedTickets/UsedTickets";
 
 export const Router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ export const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <NewTickets></NewTickets>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/usedTickets",
+        element: (
+          <PrivateRoute>
+            <UsedTickets></UsedTickets>
           </PrivateRoute>
         ),
       },

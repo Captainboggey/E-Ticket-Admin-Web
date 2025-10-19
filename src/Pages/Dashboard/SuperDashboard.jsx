@@ -63,10 +63,12 @@ const SuperDashboard = () => {
       </div>
       <div className="card bg-pink-500 text-primary-content w-96">
         <div className="card-body">
-          <h2 className="card-title flex justify-between text-2xl">
-            Used Ticket {usedTicket}
-            <IoTicket></IoTicket>
-          </h2>
+          <Link to={"/usedTickets"}>
+            <h2 className="card-title flex justify-between text-2xl">
+              Used Ticket {usedTicket}
+              <IoTicket></IoTicket>
+            </h2>
+          </Link>
 
           <div className="card-actions justify-end"></div>
         </div>
