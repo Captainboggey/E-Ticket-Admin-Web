@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA9Kkz4Ed0MjsEtPSkNLDhEeLnPiiH5_RA",
-  authDomain: "e-ticket-apk-3233a.firebaseapp.com",
-  projectId: "e-ticket-apk-3233a",
-  storageBucket: "e-ticket-apk-3233a.firebasestorage.app",
-  messagingSenderId: "950835601269",
-  appId: "1:950835601269:web:64f22e54ba489637593d3c"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
