@@ -6,6 +6,7 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import CounterTickets from "../Pages/CounterTickets/CounterTickets";
 import OnlineTickets from "../Pages/OnlineTickets/OnlineTickets";
+import NewTickets from "../Pages/NewTickets/NewTickets";
 
 export const Router = createBrowserRouter([
   {
@@ -41,6 +42,14 @@ export const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <OnlineTickets></OnlineTickets>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/newTickets",
+        element: (
+          <PrivateRoute>
+            <NewTickets></NewTickets>
           </PrivateRoute>
         ),
       },

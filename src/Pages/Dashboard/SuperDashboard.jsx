@@ -28,7 +28,7 @@ const SuperDashboard = () => {
     <div className="my-10 mx-5 grid md:grid-cols-4 gap-4">
       <div className="card bg-green-500 text-primary-content w-96">
         <div className="card-body">
-          <Link to={'/counterTickets'}>
+          <Link to={"/counterTickets"}>
             <h2 className="card-title text-2xl flex justify-between">
               Counter Ticket {counterTicket}
               <IoTicket></IoTicket>
@@ -40,19 +40,23 @@ const SuperDashboard = () => {
       </div>
       <div className="card bg-orange-500 text-primary-content w-96">
         <div className="card-body">
-          <Link to={'/onlineTickets'}><h2 className="card-title text-2xl flex justify-between">
-            Online Ticket {onlineTicket}
-            <IoTicket></IoTicket>
-          </h2></Link>
+          <Link to={"/onlineTickets"}>
+            <h2 className="card-title text-2xl flex justify-between">
+              Online Ticket {onlineTicket}
+              <IoTicket></IoTicket>
+            </h2>
+          </Link>
 
           <div className="card-actions justify-end"></div>
         </div>
       </div>
       <div className="card bg-red-500 text-primary-content w-96">
         <div className="card-body">
-          <h2 className="card-title flex justify-between text-2xl">
-            New Ticket {newTicket} <IoTicket></IoTicket>
-          </h2>
+          <Link to={"/newTickets"}>
+            <h2 className="card-title flex justify-between text-2xl">
+              New Ticket {newTicket} <IoTicket></IoTicket>
+            </h2>
+          </Link>
 
           <div className="card-actions justify-end"></div>
         </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../Shared/Navbar";
 
-const OnlineTickets = () => {
+const NewTickets = () => {
   const [counterTicket, setCounterTicket] = useState(0);
   const [ticket, setTicket] = useState([]);
   useEffect(() => {
-    fetch("https://e-ticket-server-pi.vercel.app/totalOnlineTickets")
+    fetch("https://e-ticket-server-pi.vercel.app/totalUnUsedTickets")
       .then((res) => res.json())
       .then((data) => setCounterTicket(data));
 
@@ -13,13 +13,13 @@ const OnlineTickets = () => {
       .then((res) => res.json())
       .then((data) => setTicket(data));
   }, []);
-  const modify = ticket.filter((aTicket) => aTicket.ticketType === "online");
+  const modify = ticket.filter((aTicket) => aTicket.status === "unused");
   console.log(modify);
   return (
     <div>
       <Navbar></Navbar>
       <h2 className="my-10 text-3xl text-center">
-        Total Online Tickets {counterTicket}
+        Total New Tickets {counterTicket}
       </h2>
       <div>
         <div className="overflow-x-auto">
@@ -54,4 +54,4 @@ const OnlineTickets = () => {
   );
 };
 
-export default OnlineTickets;
+export default NewTickets;
