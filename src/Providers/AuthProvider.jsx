@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import app from "../firebaseinit/firebase.config";
 import { unstable_HistoryRouter } from "react-router-dom";
@@ -24,18 +25,22 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const logOut = () => {
+    setLoading(true);
+    return signOut(auth);
+  };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("state changed");
+      console.log(currentUser);
       setLoading(false);
     });
     return () => {
-      unSubscribe();
+      return unSubscribe();
     };
   }, []);
-  const authInfo = { signUpUser, signInUser, user };
+  const authInfo = { signUpUser, signInUser, user, logOut };
   return <AuthContext value={authInfo}>{children}</AuthContext>;
 };
 

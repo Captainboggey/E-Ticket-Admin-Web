@@ -3,6 +3,9 @@ import Main from "../Layout/Main";
 import Register from "../Pages/Register/Register";
 import Login from "../Pages/Login/Login";
 import Dashboard from "../Pages/Dashboard/Dashboard";
+import PrivateRoute from "./PrivateRoute";
+import CounterTickets from "../Pages/CounterTickets/CounterTickets";
+import OnlineTickets from "../Pages/OnlineTickets/OnlineTickets";
 
 export const Router = createBrowserRouter([
   {
@@ -10,7 +13,7 @@ export const Router = createBrowserRouter([
     element: <Main></Main>,
     children: [
       {
-        path: "/register",
+        path: "/",
         element: <Register></Register>,
       },
       {
@@ -19,7 +22,27 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: (
+          <PrivateRoute>
+            <Dashboard></Dashboard>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/counterTickets",
+        element: (
+          <PrivateRoute>
+            <CounterTickets></CounterTickets>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/onlineTickets",
+        element: (
+          <PrivateRoute>
+            <OnlineTickets></OnlineTickets>
+          </PrivateRoute>
+        ),
       },
     ],
   },
