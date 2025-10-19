@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./Register.css";
+import "./Login.css";
 import logo from "../../assets/register/icon.png";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -7,8 +7,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-const Register = () => {
-  const { signUpUser } = useContext(AuthContext);
+const Login = () => {
+  const { signInUser } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -17,20 +17,13 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    signUpUser(data.email, data.password).then((res) => {
+    signInUser(data.email, data.password).then((res) => {
       if (res) {
-        const userInfo = { name: data.name, email: data.email, role: "user" };
-        axios
-          .post("https://e-ticket-server-pi.vercel.app/users", userInfo)
-          .then((res) => {
-            if (res) {
-              Swal.fire({
-                title: "Registration Success!",
+        Swal.fire({
+          title: "Login Success!",
 
-                icon: "success",
-              });
-            }
-          });
+          icon: "success",
+        });
       }
     });
   };
@@ -40,20 +33,6 @@ const Register = () => {
         <div className="card bg-base-100 w-96 max-w-sm shrink-0 shadow-lg">
           <img src={logo} className="w-40 mx-auto my-5" alt="" />
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            <div className="form-control">
-              <input
-                {...register("name", { required: true })}
-                aria-invalid={errors.name ? "true" : "false"}
-                type="text"
-                placeholder="নাম "
-                className="input input-bordered border-2 p-2 w-full"
-              />
-              {errors.name?.type === "required" && (
-                <p className="text-red-800 my-2" role="alert">
-                  Name is required
-                </p>
-              )}
-            </div>
             <div className="form-control">
               <input
                 {...register("email", { required: true })}
@@ -94,13 +73,13 @@ const Register = () => {
               <input
                 className="btn w-full bg-green-800 text-white mb-5"
                 type="submit"
-                value="রেজিস্টার করুন"
+                value="লগইন করুন"
               />
             </div>
             <p className="text-center">
-              অ্যাকাউন্ট আছে ?{" "}
-              <Link to={"/login"}>
-                <span className="text-red-800">লগইন</span>{" "}
+              অ্যাকাউন্ট নেই ?{" "}
+              <Link to={"/"}>
+                <span className="text-red-800">রেজিস্টার</span>{" "}
               </Link>
               করুন
             </p>
@@ -111,4 +90,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
