@@ -5,9 +5,10 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const { signInUser } = useContext(AuthContext);
   const {
     register,
@@ -25,6 +26,7 @@ const Login = () => {
           icon: "success",
         });
       }
+      navigate("/dashboard");
     });
   };
   return (
