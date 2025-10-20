@@ -25,7 +25,7 @@ const SuperDashboard = () => {
       .then((data) => setOnlineTicket(data));
   }, []);
   return (
-    <div className="my-10 mx-5 grid md:grid-cols-4 gap-4">
+    <div className="my-10 mx-5 grid justify-center md:grid-cols-4  gap-4">
       <div className="card bg-green-500 text-primary-content w-96">
         <div className="card-body">
           <Link to={"/counterTickets"}>
@@ -75,9 +75,11 @@ const SuperDashboard = () => {
       </div>
       <div className="card bg-primary text-primary-content w-96">
         <div className="card-body">
-          <h2 className="card-title flex justify-between text-2xl">
-            Total Ticket {totalTicket} <IoTicket></IoTicket>
-          </h2>
+          <Link to={"/totalTickets"}>
+            <h2 className="card-title flex justify-between text-2xl">
+              Total Ticket {totalTicket} <IoTicket></IoTicket>
+            </h2>
+          </Link>
 
           <div className="card-actions justify-end"></div>
         </div>

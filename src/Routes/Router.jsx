@@ -8,6 +8,8 @@ import CounterTickets from "../Pages/CounterTickets/CounterTickets";
 import OnlineTickets from "../Pages/OnlineTickets/OnlineTickets";
 import NewTickets from "../Pages/NewTickets/NewTickets";
 import UsedTickets from "../Pages/UsedTickets/UsedTickets";
+import TotalTickets from "../Pages/TotalTickets/TotalTickets";
+import CounterNewTickets from "../Pages/CounterNewTickets/CounterNewTickets";
 
 export const Router = createBrowserRouter([
   {
@@ -59,6 +61,22 @@ export const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <UsedTickets></UsedTickets>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/totalTickets",
+        element: (
+          <PrivateRoute>
+            <TotalTickets></TotalTickets>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/counterNewTickets",
+        element: (
+          <PrivateRoute>
+            <CounterNewTickets></CounterNewTickets>
           </PrivateRoute>
         ),
       },

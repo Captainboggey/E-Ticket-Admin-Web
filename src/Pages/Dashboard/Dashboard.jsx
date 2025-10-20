@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import SuperDashboard from "./SuperDashboard";
 import Navbar from "../../Shared/Navbar";
+import CounterDashboard from "./CounterDashboard";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -16,7 +17,8 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar></Navbar>
-      {loggedUser === "superAdmin" && <SuperDashboard></SuperDashboard>}
+      {(loggedUser === "superAdmin" && <SuperDashboard></SuperDashboard>) ||
+        (loggedUser === "counter" && <CounterDashboard></CounterDashboard>)}
     </div>
   );
 };
