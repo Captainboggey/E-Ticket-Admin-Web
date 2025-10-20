@@ -30,7 +30,7 @@ const SuperDashboard = () => {
         <div className="card-body">
           <Link to={"/counterTickets"}>
             <h2 className="card-title text-2xl flex justify-between">
-              Counter Ticket {counterTicket}
+              কাউন্টার টিকেট {counterTicket}
               <IoTicket></IoTicket>
             </h2>
           </Link>
@@ -42,7 +42,7 @@ const SuperDashboard = () => {
         <div className="card-body">
           <Link to={"/onlineTickets"}>
             <h2 className="card-title text-2xl flex justify-between">
-              Online Ticket {onlineTicket}
+              অনলাইন টিকেট {onlineTicket}
               <IoTicket></IoTicket>
             </h2>
           </Link>
@@ -54,7 +54,7 @@ const SuperDashboard = () => {
         <div className="card-body">
           <Link to={"/newTickets"}>
             <h2 className="card-title flex justify-between text-2xl">
-              New Ticket {newTicket} <IoTicket></IoTicket>
+              নতুন টিকেট {newTicket} <IoTicket></IoTicket>
             </h2>
           </Link>
 
@@ -65,7 +65,7 @@ const SuperDashboard = () => {
         <div className="card-body">
           <Link to={"/usedTickets"}>
             <h2 className="card-title flex justify-between text-2xl">
-              Used Ticket {usedTicket}
+              ব্যবহৃত টিকেট {usedTicket}
               <IoTicket></IoTicket>
             </h2>
           </Link>
@@ -77,7 +77,7 @@ const SuperDashboard = () => {
         <div className="card-body">
           <Link to={"/totalTickets"}>
             <h2 className="card-title flex justify-between text-2xl">
-              Total Ticket {totalTicket} <IoTicket></IoTicket>
+              সমস্ত টিকেট {totalTicket} <IoTicket></IoTicket>
             </h2>
           </Link>
 

@@ -34,7 +34,7 @@ const CounterDashboard = () => {
       </div>
       <div className="card bg-orange-500 text-primary-content w-96">
         <div className="card-body">
-          <Link to={"/onlineTickets"}>
+          <Link to={"/counterUsedTickets"}>
             <h2 className="card-title text-2xl flex justify-between">
               ব্যবহৃত টিকিট {counterUsedTicket}
               <IoTicket></IoTicket>
@@ -46,9 +46,20 @@ const CounterDashboard = () => {
       </div>
       <div className="card bg-red-500 text-primary-content w-96">
         <div className="card-body">
-          <Link to={"/newTickets"}>
+          <Link to={"/counterTotalTickets"}>
             <h2 className="card-title flex justify-between text-2xl">
               মোট টিকিট {counterTicket} <IoTicket></IoTicket>
+            </h2>
+          </Link>
+
+          <div className="card-actions justify-end"></div>
+        </div>
+      </div>
+      <div className="card bg-yellow-500 text-primary-content w-96">
+        <div className="card-body">
+          <Link to={"/counterCreateTicket"}>
+            <h2 className="card-title flex justify-between text-2xl">
+              টিকেট তৈরি করুন + <IoTicket></IoTicket>
             </h2>
           </Link>
 
