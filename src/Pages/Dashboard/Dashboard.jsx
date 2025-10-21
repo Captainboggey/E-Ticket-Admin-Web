@@ -13,7 +13,7 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((data) => setLoggedUser(data?.role));
   }, [user?.email]);
-  console.log(loggedUser);
+ 
   return (
     <div>
       <Navbar></Navbar>
