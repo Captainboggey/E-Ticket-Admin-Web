@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { IoTicket } from "react-icons/io5";
 import { Link } from "react-router-dom";
+
 const SuperDashboard = () => {
   const [counterTicket, setCounterTicket] = useState(0);
   const [onlineTicket, setOnlineTicket] = useState(0);
@@ -25,7 +26,7 @@ const SuperDashboard = () => {
       .then((data) => setOnlineTicket(data));
   }, []);
   return (
-    <div className="my-10 mx-5 grid justify-center md:grid-cols-4  gap-4">
+    <div className="my-10 mx-5 grid justify-center md:grid-cols-4  gap-4 ">
       <div className="card bg-green-500 text-primary-content w-96">
         <div className="card-body">
           <Link to={"/counterTickets"}>
