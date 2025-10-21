@@ -115,7 +115,7 @@ const CounterTotalTickets = () => {
             type="text"
             value={searchId}
             onChange={(e) => setSearchId(e.target.value)}
-            className="input input-bordered w-64"
+            className="input input-bordered w-64 border-2 p-2"
             placeholder="Enter Ticket ID..."
           />
         </div>
@@ -126,7 +126,7 @@ const CounterTotalTickets = () => {
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="input input-bordered"
+            className="input input-bordered border-2 p-2"
           />
         </div>
 
@@ -136,27 +136,27 @@ const CounterTotalTickets = () => {
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="input input-bordered"
+            className="input input-bordered border-2 p-2"
           />
         </div>
 
         <button
           onClick={handleFilter}
-          className="btn btn-primary h-fit px-6 py-2 text-white"
+          className="btn bg-green-500 h-fit px-6 py-2 text-white"
         >
           Search
         </button>
 
         <button
           onClick={handleReset}
-          className="btn btn-ghost h-fit px-6 py-2 border"
+          className="btn bg-green-500 h-fit px-6 py-2 text-white"
         >
           Reset
         </button>
 
         <button
           onClick={handlePrintPDF}
-          className="btn btn-success h-fit px-6 py-2 text-white"
+          className="btn bg-green-500 h-fit px-6 py-2 text-white"
         >
           Print PDF
         </button>
