@@ -28,7 +28,6 @@ const OnlineTickets = () => {
       });
   }, []);
 
-  // ✅ Filter by ID and Date Range
   const handleFilter = () => {
     let filtered = ticket;
 
@@ -50,7 +49,6 @@ const OnlineTickets = () => {
     setFilteredTickets(filtered);
   };
 
-  // ✅ Reset Filters
   const handleReset = () => {
     setSearchId("");
     setFromDate("");
@@ -58,7 +56,6 @@ const OnlineTickets = () => {
     setFilteredTickets(ticket);
   };
 
-  // ✅ Generate PDF of filtered data
   const handlePrintPDF = () => {
     const doc = new jsPDF("p", "pt", "a4");
 
@@ -108,28 +105,27 @@ const OnlineTickets = () => {
         Total Online Tickets {onlineTicketCount}
       </h2>
 
-      {/* 🔍 Search and Filter Controls */}
       <div className="flex flex-wrap justify-center items-end gap-4 mb-8 px-6">
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">
+          <label className="text-sm font-medium mb-1 ">
             Search by Ticket ID
           </label>
           <input
             type="text"
             value={searchId}
             onChange={(e) => setSearchId(e.target.value)}
-            className="input input-bordered w-64"
+            className="input input-bordered w-64 border-2 p-2"
             placeholder="Enter Ticket ID..."
           />
         </div>
 
         <div className="flex flex-col">
-          <label className="text-sm font-medium mb-1">From Date</label>
+          <label className="text-sm font-medium mb-1 ">From Date</label>
           <input
             type="date"
             value={fromDate}
             onChange={(e) => setFromDate(e.target.value)}
-            className="input input-bordered"
+            className="input input-bordered border-2 p-2"
           />
         </div>
 
@@ -139,33 +135,32 @@ const OnlineTickets = () => {
             type="date"
             value={toDate}
             onChange={(e) => setToDate(e.target.value)}
-            className="input input-bordered"
+            className="input input-bordered border-2 p-2"
           />
         </div>
 
         <button
           onClick={handleFilter}
-          className="btn btn-primary h-fit px-6 py-2 text-white"
+          className="btn  h-fit px-6 py-2 text-white bg-green-500"
         >
           Search
         </button>
 
         <button
           onClick={handleReset}
-          className="btn btn-ghost h-fit px-6 py-2 border"
+          className="btn  h-fit px-6 py-2 text-white bg-green-500"
         >
           Reset
         </button>
 
         <button
           onClick={handlePrintPDF}
-          className="btn btn-success h-fit px-6 py-2 text-white"
+          className="btn  h-fit px-6 py-2 text-white bg-green-500"
         >
           Print PDF
         </button>
       </div>
 
-      {/* 🧾 Tickets Table */}
       <div className="overflow-x-auto px-5">
         <table className="table table-zebra w-full text-center">
           <thead>

@@ -15,7 +15,7 @@ export default function CounterCreateTicket() {
     },
   });
 
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
   const [tickets, setTickets] = useState({
     child: 0,
     primary: 0,
@@ -51,7 +51,6 @@ export default function CounterCreateTicket() {
     );
   };
 
-  // ✅ Sync offline tickets when online
   useEffect(() => {
     const syncOfflineTickets = async () => {
       const offlineTickets = JSON.parse(
@@ -70,7 +69,7 @@ export default function CounterCreateTicket() {
           }
         }
         localStorage.removeItem("offlineTickets");
-        alert("✅ Offline tickets synced successfully!");
+        alert(" Offline tickets synced successfully!");
       }
     };
 
@@ -88,7 +87,6 @@ export default function CounterCreateTicket() {
     };
 
     if (navigator.onLine) {
-      // Online: send to server
       try {
         const res = await fetch(
           "https://e-ticket-server-pi.vercel.app/tickets",
@@ -101,18 +99,16 @@ export default function CounterCreateTicket() {
         const result = await res.json();
 
         if (result.insertedId) {
-          alert(`✅ Successfully booked online!\nTotal: ${getTotal()} টাকা`);
+          alert(` Successfully booked online!\nTotal: ${getTotal()} টাকা`);
         }
       } catch (err) {
         alert("Error sending data. Storing offline instead.\n\n" + err.message);
         saveOffline(info);
       }
     } else {
-      // Offline: save to localStorage
       saveOffline(info);
     }
 
-    // Reset form
     reset();
     setTickets({
       child: 0,
@@ -131,14 +127,13 @@ export default function CounterCreateTicket() {
     );
     offlineTickets.push(ticketInfo);
     localStorage.setItem("offlineTickets", JSON.stringify(offlineTickets));
-    alert(`⚠️ No internet. Ticket saved offline. Total: ${getTotal()} টাকা`);
+    alert(` No internet. Ticket saved offline. Total: ${getTotal()} টাকা`);
   };
 
   return (
     <div>
       <Navbar />
       <div style={styles.container}>
-        {/* Nationality */}
         <label>জাতীয়তা:</label>
         <Controller
           control={control}
@@ -152,11 +147,11 @@ export default function CounterCreateTicket() {
           )}
         />
 
-        {/* Date */}
         <label>দর্শন তারিখ ও সময়:</label>
         <input
           style={styles.input}
           type="date"
+          placeholder={new Date()}
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -208,7 +203,6 @@ export default function CounterCreateTicket() {
   );
 }
 
-// Styles remain the same
 const styles = {
   container: {
     padding: "20px",

@@ -25,7 +25,6 @@ const TotalTickets = () => {
       });
   }, []);
 
-  // ✅ Filter function (by ID and date)
   const handleFilter = () => {
     let filtered = ticket;
 
@@ -47,7 +46,6 @@ const TotalTickets = () => {
     setFilteredTickets(filtered);
   };
 
-  // ✅ Reset filters
   const handleReset = () => {
     setSearchId("");
     setFromDate("");
@@ -55,7 +53,6 @@ const TotalTickets = () => {
     setFilteredTickets(ticket);
   };
 
-  // ✅ Generate and download PDF
   const handlePrintPDF = () => {
     const doc = new jsPDF("p", "pt", "a4");
 
@@ -105,7 +102,6 @@ const TotalTickets = () => {
         Total New Tickets {counterTicket}
       </h2>
 
-      {/* 🔍 Search + Filter Section */}
       <div className="flex flex-wrap justify-center items-end gap-4 mb-8 px-6">
         <div className="flex flex-col">
           <label className="text-sm font-medium mb-1">
@@ -143,27 +139,26 @@ const TotalTickets = () => {
 
         <button
           onClick={handleFilter}
-          className="btn btn-primary bg-green-500 text-white h-fit px-6 py-2 rounded-lg "
+          className="btn  bg-green-500 text-white h-fit px-6 py-2 rounded-lg "
         >
           Search
         </button>
 
         <button
           onClick={handleReset}
-          className="btn btn-primary bg-green-500 text-white h-fit px-6 py-2 border rounded-lg"
+          className="btn  bg-green-500 text-white h-fit px-6 py-2 rounded-lg"
         >
           Reset
         </button>
 
         <button
           onClick={handlePrintPDF}
-          className="btn btn-success bg-green-500 h-fit px-6 py-2 text-white"
+          className="btn  bg-green-500 text-white h-fit px-6 py-2 rounded-lg"
         >
           Print PDF
         </button>
       </div>
 
-      {/* 🧾 Tickets Table */}
       <div className="overflow-x-auto px-5">
         <table className="table table-zebra w-full text-center">
           <thead>
