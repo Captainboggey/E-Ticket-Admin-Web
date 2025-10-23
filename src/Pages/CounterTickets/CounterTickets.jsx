@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../Shared/Navbar";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import { FaEye } from "react-icons/fa";
+import { QRCodeCanvas } from "qrcode.react";
 
 const CounterTickets = () => {
   const [counterTicket, setCounterTicket] = useState(0);
   const [ticket, setTicket] = useState([]);
   const [filteredTickets, setFilteredTickets] = useState([]);
-
   const [searchId, setSearchId] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+
+  // Popup modal state
+  const [selectedTicket, setSelectedTicket] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     fetch("https://e-ticket-server-pi.vercel.app/totalCounter")
@@ -58,7 +63,6 @@ const CounterTickets = () => {
 
   const handlePrintPDF = () => {
     const doc = new jsPDF("p", "pt", "a4");
-
     doc.setFontSize(18);
     doc.text("Counter Ticket Report", 40, 40);
 
@@ -97,10 +101,33 @@ const CounterTickets = () => {
     doc.save("Counter_Ticket_Report.pdf");
   };
 
+  const handleView = (ticket) => {
+    setSelectedTicket(ticket);
+    setShowPopup(true);
+  };
+
+  const handlePrintSingle = () => {
+    const printContents = document.getElementById("ticket-popup").innerHTML;
+    const newWindow = window.open("", "_blank");
+    newWindow.document.write(`
+      <html>
+      <head>
+        <title>Print Ticket</title>
+        <style>
+          body { font-family: sans-serif; text-align: center; padding: 20px; }
+          .ticket { border: 2px solid black; padding: 20px; display: inline-block; }
+        </style>
+      </head>
+      <body>${printContents}</body>
+      </html>
+    `);
+    newWindow.document.close();
+    newWindow.print();
+  };
+
   return (
     <div>
       <Navbar />
-
       <h2 className="my-10 text-3xl text-center font-semibold">
         Total Counter Tickets {counterTicket}
       </h2>
@@ -141,21 +168,21 @@ const CounterTickets = () => {
 
         <button
           onClick={handleFilter}
-          className="btn  bg-green-500 border-none h-fit px-6 py-2 text-white"
+          className="btn bg-green-500 border-none h-fit px-6 py-2 text-white"
         >
           Search
         </button>
 
         <button
           onClick={handleReset}
-          className="btn  bg-green-500 border-none h-fit px-6 py-2 text-white"
+          className="btn bg-green-500 border-none h-fit px-6 py-2 text-white"
         >
           Reset
         </button>
 
         <button
           onClick={handlePrintPDF}
-          className="btn  bg-green-500 border-none h-fit px-6 py-2 text-white"
+          className="btn bg-green-500 border-none h-fit px-6 py-2 text-white"
         >
           Print PDF
         </button>
@@ -169,6 +196,7 @@ const CounterTickets = () => {
               <th>Nationality</th>
               <th>Date</th>
               <th>Amount</th>
+              <th>View</th>
             </tr>
           </thead>
           <tbody>
@@ -179,11 +207,19 @@ const CounterTickets = () => {
                   <td>{t.nationality}</td>
                   <td>{t.date}</td>
                   <td>{t.totalAmount}</td>
+                  <td>
+                    <button
+                      onClick={() => handleView(t)}
+                      className="text-green-600 hover:text-green-800"
+                    >
+                      <FaEye size={20} />
+                    </button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="4" className="py-4 text-gray-500">
+                <td colSpan="5" className="py-4 text-gray-500">
                   No tickets found.
                 </td>
               </tr>
@@ -191,6 +227,43 @@ const CounterTickets = () => {
           </tbody>
         </table>
       </div>
+
+      {showPopup && selectedTicket && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div
+            id="ticket-popup"
+            className="bg-white p-6 rounded-lg w-[400px] text-center relative border-2 border-gray-700"
+          >
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute top-3 right-3 text-red-600 font-bold text-lg"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-xl font-bold mb-1">
+              গণপ্রজাতন্ত্রী বাংলাদেশ সরকার
+            </h2>
+            <p>সংস্কৃতি বিষয়ক মন্ত্রণালয়</p>
+            <p className="text-sm text-gray-700">www.archaeology.gov.bd</p>
+
+            <hr className="my-3 border-gray-400" />
+
+            <h3 className="font-bold mb-2">ই-টিকিটের তথ্য</h3>
+            <p className="text-sm">দর্শনের তারিখ: {selectedTicket.date}</p>
+            <p className="text-sm">জাতীয়তা: {selectedTicket.nationality}</p>
+            <p className="text-sm font-medium mt-2">
+              মোট: {selectedTicket.totalAmount} টাকা
+            </p>
+
+            <div className="flex justify-center mt-4">
+              <QRCodeCanvas value={selectedTicket._id} size={120} />
+            </div>
+
+            <p className="text-xs mt-2">Ticket ID: {selectedTicket._id}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
